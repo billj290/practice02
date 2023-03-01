@@ -36,7 +36,9 @@
         $.post("./api/chk_acc.php",user,(res)=>{
             if(parseInt(res)===1){
                 $.post("./api/chk_pw.php",user,(res)=>{
+                    // console.log('res',res)
                     if(parseInt(res)===1){
+                        // console.log(res)
                         if(user.acc==='admin'){
                             location.href="back.php";
                         }else{
