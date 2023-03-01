@@ -168,6 +168,3 @@ if(!isset($_SESSION['total'])){
     $Total->save($today);
     $_SESSION['total']=1;
 }
-
-
-?>
