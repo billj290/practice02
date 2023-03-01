@@ -36,7 +36,7 @@
         $.post("./api/chk_acc.php",user,(res)=>{
             if(parseInt(res)===1){
                 $.post("./api/chk_pw.php",user,(res)=>{
-                    if(parseInt(res)==1){
+                    if(parseInt(res)===1){
                         if(user.acc==='admin'){
                             location.href="back.php";
                         }else{
@@ -44,10 +44,12 @@
                         }
                     }else{
                         alert('密碼錯誤')
+                        reset()
                     }
                 })
             }else{
                 alert('查無帳號')
+                reset()
             }
         })
     }

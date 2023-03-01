@@ -1,6 +1,12 @@
 <?php
 
 include_once "base.php";
-echo $User->count(['pw'=>$_POST['pw']]);
-
+$chk=$User->count(['acc'=>$_POST['acc'],'pw'=>$_POST['pw']]);
+dd($chk);
+if(($chk)>0){
+    echo $chk;
+    $_SESSION['login']=$_POST['acc'];
+}else{
+    echo $chk;
+}
 ?>
