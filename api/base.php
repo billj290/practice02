@@ -123,7 +123,7 @@ class DB
                 }
                 $sql = "select $math($col) from $this->table ";
         }
-
+            
         if (isset($con)) {
             if (is_array($con)) {
                 $tmp = $this->arrayToSqlArray($con);
@@ -153,13 +153,19 @@ function q($sql){
 
 $Total=new DB('total');
 
+//瀏覽人次邏輯,利用session['total']變數,如果有代表今天有來過,在資料表total的total欄位+1.
+//如果沒有,就在資料表date欄位紀錄今天日期,total欄位計入1.
+//並將資料存回資料庫, session['total']變數設為1.
 if(!isset($_SESSION['total'])){
     $today=$Total->find(['date'=>date("Y-m-d")]);
     if(empty($today)){
         $today=['date'=>date("Y-m-d"),'total'=>1];
+
     }else{
-        $today[]
+        $today['total']++;
     }
+    $Total->save($today);
+    $_SESSION['total']=1;
 }
 
 ?>
