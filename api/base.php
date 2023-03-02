@@ -155,6 +155,7 @@ function q($sql){
 $Total=new DB('total');
 $User=new DB('user');
 $News=new DB('news');
+$Que=new DB('que');
 
 //瀏覽人次邏輯,利用session['total']變數,如果有代表今天有來過,在資料表total的total欄位+1.
 //如果沒有,就在資料表date欄位紀錄今天日期,total欄位計入1.
