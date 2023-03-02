@@ -29,9 +29,9 @@
 		</div>
 		<div id="mm">
 			<div class="hal" id="lef">
-				<a class="blo" href="?do=po">帳號管理</a>
-				<a class="blo" href="?do=news">分類網誌</a>
-				<a class="blo" href="?do=pop">最新文章管理</a>
+				<a class="blo" href="?do=admin">帳號管理</a>
+				<a class="blo" href="?do=po">分類網誌</a>
+				<a class="blo" href="?do=news">最新文章管理</a>
 				<a class="blo" href="?do=know">講座管理</a>
 				<a class="blo" href="?do=que">問卷管理</a>
 			</div>
