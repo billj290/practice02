@@ -1,3 +1,13 @@
+<style>
+    .full{
+        display: none;
+    }
+    .news-title{
+        cursor:pointer;
+        background-color: lightgray;
+    }
+</style>
+
 <fieldset>
     <legend>目前位置: 首頁 > 最新文章區</legend>
     <table>
@@ -17,8 +27,11 @@
 
         ?>
             <tr>
-                <td><?= $row['title']; ?></td>
-                <td><?= mb_substr($row['text'], 0, 20); ?>...</td>
+                <td class="news-title"><?= $row['title']; ?></td>
+                <td>
+                    <div class="short"><?= mb_substr($row['text'], 0, 20); ?>...</div>
+                    <div class="full"><?=nl2br($row['text']);?></div>
+                </td>
             </tr>
         <?php
         }
@@ -28,18 +41,38 @@
         <?php
         if (($now - 1) > 0) {
             $pre = $now - 1;
-            echo "<a href='index.php?do=news&p=$pre'> < </a>";
+            echo "<a href='index.php?do=pop&p=$pre'> < </a>";
         }
 
         for ($i = 1; $i <= $pages; $i++) {
             $size = ($i == $now) ? '24px' : '16px';
-            echo "<a href='index.php?do=news&p=$i' style='font-size:$size'> $i </a>";
+            echo "<a href='index.php?do=pop&p=$i' style='font-size:$size'> $i </a>";
         }
 
         if (($now + 1 <= $pages)) {
             $next = $now + 1;
-            echo "<a href='index.php?do=news&p=$next'> > </a>";
+            echo "<a href='index.php?do=pop&p=$next'> > </a>";
         }
         ?>
     </div>
 </fieldset>
+
+<script>
+    //next() 取得同⼀層級符合條件的下⼀個元素
+    //siblings() 從 DOM Tree 同層的元素尋找所有符合的 selector但不包含⾃⼰本⾝
+    //children() 從指定的位置開始只往「下⼀層」找到符合的 selector
+    // 我本來的寫法是用三個td, 分別放news-title跟short跟full 因此用下面的寫法
+    // $('.news-title').on("click", function(){
+    //     $(this).siblings('.short,.full').toggle();
+    // })
+
+        $('.news-title').on("click", function(){
+            //73跟74行, 當我點標題的時候, 所有short都顯示, 所有full都隱藏.等於回復原來的樣子.
+            // $('.short').show();
+            // $('.full').hide();
+            $('.short').show();
+            $('.full').hide();
+            $(this).next().children('.short,.full').toggle();
+        })
+</script>
+
