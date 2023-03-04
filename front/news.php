@@ -34,14 +34,17 @@
                     <div class="full"><?=nl2br($row['text']);?></div>
                 </td>
                 <td>
-                    <span class="num"><?=$row['good'];?></span>
-                    個人說
-                    <img src="./icon/02B03.JPG" style="width:20px;height:20px">
                     <?php
-                        if(isset($_SESSION['login'])){
-                            echo "<a href='#' class='goods' data-user='{$_SESSION['login']}'  data-news='{$row['id']}'>";
-                            echo "讚";
-                            echo "</a>";
+                         if(isset($_SESSION['login'])){
+                            if($Log->count(['user'=>$_SESSION['login'],'news'=>$row['id']])>0){
+                                echo "<a href='#' class='goods' data-user='{$_SESSION['login']}' data-news='{$row['id']}'>";
+                                echo "收回讚";
+                                echo "</a>";
+                            }else{
+                                echo "<a href='#' class='goods' data-user='{$_SESSION['login']}'  data-news='{$row['id']}'>";
+                                echo "讚";
+                                echo "</a>";
+                            }
                         }
                     ?>
                 </td>

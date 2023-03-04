@@ -134,10 +134,11 @@
     //這個物件裡面有一個currentTarget,寫成e.target就可以抓到元素.
     //$(e.target).index(), 抓到上面.tab的索引,給下面的.box來抓到對應的div.
     //讓下面對應的.box可以show.
-    $('.tab').on('click', (e) => {
-        $('.tab').removeClass('active')
-        $(e.target).addClass('active')
-        $('.box').hide()
-        $('.box').eq($(e.target).index()).show()
-    })
+   $('.tab').on("click",(e)=>{
+    $('.tab').removeClass('active')
+    $(e.target).addClass('active')
+    $('.box').hide()
+    $('.box').eq($(e.target).index()).show()
+
+   })
 </script>

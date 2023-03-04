@@ -10,7 +10,7 @@ $(document).ready(()=>{
 		let user = $(this).data('user');
 		let news = $(this).data('news');
 		let num = parseInt($(this).siblings('.num').text());
-
+		console.log(user,news,num);
 		$.post("./api/good.php",{user,news},()=>{
 			
 			if($(this).text()=="讚")
@@ -23,8 +23,9 @@ $(document).ready(()=>{
 				$(this).text("讚");
 				$(this).siblings('.num').text(num-1);
 			}
+			// location.reload();
 		})
-
+		
 
 	})
 })
