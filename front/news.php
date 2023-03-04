@@ -14,6 +14,7 @@
         <tr>
             <td width="30%">標題</td>
             <td width="50%">內容</td>
+            <td></td>
         </tr>
         <?php
         $all = $News->count(['sh' => 1]);
@@ -31,6 +32,18 @@
                 <td>
                     <div class="short"><?= mb_substr($row['text'], 0, 20); ?>...</div>
                     <div class="full"><?=nl2br($row['text']);?></div>
+                </td>
+                <td>
+                    <span class="num"><?=$row['good'];?></span>
+                    個人說
+                    <img src="./icon/02B03.JPG" style="width:20px;height:20px">
+                    <?php
+                        if(isset($_SESSION['login'])){
+                            echo "<a href='#' class='goods' data-user='{$_SESSION['login']}'  data-news='{$row['id']}'>";
+                            echo "讚";
+                            echo "</a>";
+                        }
+                    ?>
                 </td>
             </tr>
         <?php
@@ -70,8 +83,7 @@
             //73跟74行, 當我點標題的時候, 所有short都顯示, 所有full都隱藏.等於回復原來的樣子.
             // $('.short').show();
             // $('.full').hide();
-            $('.short').show();
-            $('.full').hide();
+           
             $(this).next().children('.short,.full').toggle();
         })
 </script>
